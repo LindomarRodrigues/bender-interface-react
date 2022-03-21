@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "bender-interface-react",
+    "slug": "bender-interface-react",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
