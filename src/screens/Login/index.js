@@ -16,9 +16,9 @@ export default function Login({ navigation }) {
   const handlePress = () => {
     setEye((state) => !state);
   };
-//   const nav = () => {
-//     navigation.navigate("Home");
-//   };
+  const nav = () => {
+    navigation.navigate("Cadastro");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.textButton}>Entrar</Text>
         </TouchableOpacity>
-        <Text style={[styles.textButton, { marginTop: 20 }]}>Cadastre-se</Text>
+        <Text style={[styles.textButton, { marginTop: 20 }]} onPress={nav}>Cadastre-se</Text>
       </View>
     </View>
   );
