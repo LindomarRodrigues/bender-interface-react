@@ -21,18 +21,18 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // useEffect(() => {
-  //   //navigation
-  //   if (auth.currentUser) {
-  //     navigation.navigate("BottomNav");
-  //   } else {
-  //     onAuthStateChanged(auth, (user) => {
-  //       if (user) {
-  //         navigation.navigate("BottomNav");
-  //       }
-  //     });
-  //   }
-  // });
+  useEffect(() => {
+    //navigation
+    if (auth.currentUser) {
+      navigation.navigate("BottomNav");
+    } else {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          navigation.navigate("BottomNav");
+        }
+      });
+    }
+  });
 
   const login = ()=>{
     if (email !== "" && password !== "") {

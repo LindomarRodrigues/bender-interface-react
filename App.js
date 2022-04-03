@@ -4,6 +4,7 @@ import BoasVindas from "./src/screens/BoasVindas";
 import Login from "./src/screens/Login";
 import Cadastro from "./src/screens/Cadastro";
 import BottomNav from "./src/screens/BottomNav";
+import ResultHorarios from "./src/screens/BottomNav/Horario/ResultHorarios";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -32,6 +33,11 @@ export default function App() {
         <Stack.Screen
         name="BottomNav"
         component={BottomNav}
+        options={{ headerShown: false }}
+        />
+        <Stack.Screen
+        name="ResultHorarios"
+        component={ResultHorarios}
         options={{ headerShown: false }}
         />
       </Stack.Navigator>
