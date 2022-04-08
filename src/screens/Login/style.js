@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#fff",
   },
+  mensagemErro:{
+    fontSize: 18,
+    color: "#ff0000",
+  }
 });
 
 export default styles;
