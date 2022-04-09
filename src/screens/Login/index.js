@@ -3,14 +3,11 @@ import Eye from "react-native-vector-icons/Ionicons";
 import Email from "react-native-vector-icons/MaterialIcons";
 import React, {useEffect, useState} from "react";
 import styles from "./style";
-import {auth} from "../../services/firebase";
-import {signInWithEmailAndPassword} from "firebase/auth";
-import axios from 'axios';
+import MontarAxiosAPI from "../../utilitarios/axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({navigation}) {
-
     const [eye, setEye] = useState(true);
-    //auth
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -18,8 +15,10 @@ export default function Login({navigation}) {
 
 
     useEffect(() => {
-        // navigation.navigate("BottomNav")
-        console.log(encJwt)
+        AsyncStorage.setItem('@enc_jwt', encJwt).then(r => {
+
+            console.log(encJwt)
+        })
     }, [encJwt]);
 
     useEffect(() => {
@@ -28,13 +27,22 @@ export default function Login({navigation}) {
 
 
     const entrar = () => {
+        const axiosApi = MontarAxiosAPI();
         if (email !== "" && senha !== "") {
-            axios.post(`https://f100-177-126-94-254.ngrok.io/autenticacao/entrar?email=${email}&senha=${senha}`)
+            axiosApi.post('/autenticacao/entrar',
+                `grant_type=&username=${email}&password=${senha}&scope=&client_id=&client_secret=`,
+                {
+                    headers: {
+                        'accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
                 .then(r => {
-                   let resposta = r.data;
-                    if(resposta.status){
-                        navigation.navigate("BottomNav", {user: 'userCredential.user'});
-                    }else {
+                    let resposta = r.data;
+                    if (resposta.status) {
+                        setEncJwt(r.data.jwt)
+                        navigation.navigate("BottomNav");
+                    } else {
                         setErrorMessage(resposta.erro);
                     }
                 })
@@ -56,7 +64,7 @@ export default function Login({navigation}) {
                     style={styles.image}
                     source={require("../../assets/images/bender.png")}
                     resizeMode="contain"
-                ></Image>
+                />
             </View>
             <View style={styles.box}>
                 <View style={styles.inputBox}>
