@@ -11,10 +11,10 @@ export default function BoasVindas({ navigation }) {
     <View style={styles.container}>
       <View style={styles.logo}>
         <Image
-          source={require("../../assets/images/logo.png")}
-          style={styles.img}
-          resizeMode="contain"
-        ></Image>
+    source={require("../../assets/images/logo.png")}
+    style={styles.img}
+    resizeMode="contain"
+    />
       </View>
       <View style={styles.box}>
         <Text style={styles.text}>Olá! Inicie sua jornada no Bender</Text>
