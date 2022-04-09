@@ -39,9 +39,13 @@ export default function Login({navigation}) {
                 })
                 .then(r => {
                     let resposta = r.data;
+
+                    console.log(resposta)
                     if (resposta.status) {
-                        setEncJwt(r.data.jwt)
-                        navigation.navigate("BottomNav");
+                        console.log(resposta)
+                        AsyncStorage.setItem('@enc_jwt', r.data.access_token).then(r => {
+                            navigation.navigate("BottomNav");
+                        })
                     } else {
                         setErrorMessage(resposta.erro);
                     }
