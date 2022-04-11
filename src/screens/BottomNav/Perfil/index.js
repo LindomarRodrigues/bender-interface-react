@@ -11,12 +11,13 @@ import {
 from "react-native";
 import React from "react";
 import styles from "./style";
+import Cabecalho from "../../../components/Cabecalho";
 
 
 export default function Perfil(){
     return(
         <View style={styles.container}>
-            <Text style={{color:'#fff', fontSize:18}}>Pagina de Perfil</Text>
+            <Cabecalho title="Perfil"/>
         </View>
         
     )

@@ -1,20 +1,9 @@
-import {
-    View,
-    Button,
-    Text,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    SafeAreaView,
-}
-    from "react-native";
-import React, { useState, useEffect } from "react";
+import {View,} from "react-native";
+import React, {useEffect, useState} from "react";
 import styles from "./style";
 import Box from '../../../components/Box'
-import Title from "../../../components/Title";
 import ResultHorarios from "./ResultHorarios";
-import { NavigationContainer } from "@react-navigation/native";
+import Cabecalho from "../../../components/Cabecalho";
 
 export default function Horario({navigation}) {
     const [list, setList] = useState([])
@@ -29,13 +18,14 @@ export default function Horario({navigation}) {
         getList()
     }, [])
 
-    const handlePress = (val) =>{
-        navigation.push("ResultHorarios", { itens: val})
+    const handlePress = (val) => {
+        navigation.push("ResultHorarios", {itens: val})
     }
     return (
         <View style={styles.container}>
-           <Title title="Horario" />
-            {!loading && Object.keys(list).map((item, key) => (<Box  title={`${item}° Período`} key={key} click={handlePress} itens={list[item]}/>))}
+            <Cabecalho title="Horário"/>
+            {!loading && Object.keys(list).map((item, key) => (
+                <Box title={`${item}° Período`} key={key} click={handlePress} itens={list[item]}/>))}
         </View>
 
     )
