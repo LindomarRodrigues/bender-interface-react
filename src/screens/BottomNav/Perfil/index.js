@@ -1,24 +1,78 @@
-import {
-    View,
-    Button,
-    Text,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    SafeAreaView,
-} 
-from "react-native";
-import React from "react";
-import styles from "./style";
-import Cabecalho from "../../../components/Cabecalho";
+import {Image, StyleSheet, Text, View} from "react-native";
+import React, {useState} from "react";
 
 
-export default function Perfil(){
-    return(
-        <View style={styles.container}>
-            <Cabecalho title="Perfil"/>
+export default function Perfil() {
+    const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
+    const [nome, setNome] = useState('Fulano Ciclano Beltrano');
+
+
+    return (
+        <View style={style.container}>
+            <View style={style.blocoDados}>
+                <View style={[style.campoDado, {marginTop: 10}]}>
+                    <Text style={{fontSize: 18, color: "white"}}>Nome</Text>
+                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{nome}</Text>
+                </View>
+                <View style={[style.campoDado, {marginTop: 30}]}>
+                    <Text style={{fontSize: 18, color: "white"}}>Email</Text>
+                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{email}</Text>
+                </View>
+            </View>
+            <View style={style.cabecalho}>
+                <Image source={require("../../../assets/images/bender_fry.png")} style={style.capaFoto}/>
+                <Image source={require("../../../assets/images/bender_face.jpg")} style={style.perfilFoto}/>
+            </View>
         </View>
-        
+
     )
 }
+const style = StyleSheet.create({
+    container: {
+        backgroundColor: "#15202B",
+        width: "100%",
+        height: "100%",
+        flex: 1,
+        alignItems: "center",
+    },
+    cabecalho: {
+        width: "100%",
+        height: 60 + 200,
+        backgroundColor: "#00bbff",
+        position: "absolute",
+        top: 0,
+        left: 0
+    },
+    capaFoto: {
+        marginTop: 60,
+        width: 200,
+        height: 200
+    },
+    perfilFoto: {
+        width: 100,
+        height: 100,
+        borderRadius: 100,
+        borderWidth: 5,
+        borderColor: "#00bbff",
+        position: "absolute",
+        top: 210,
+        left: 280
+    },
+    blocoDados: {
+        flex: 1,
+        position: "absolute",
+        top: 260,
+        width: "100%",
+        paddingHorizontal: 20,
+        paddingTop: 60,
+        marginBottom: 60 + 20
+    },
+    campoDado: {
+        backgroundColor: "#253341",
+        padding: 10,
+        borderRadius: 30,
+        paddingHorizontal: 20,
+        marginTop: 20,
+
+    }
+})
