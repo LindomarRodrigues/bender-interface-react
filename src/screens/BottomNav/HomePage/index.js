@@ -13,6 +13,7 @@ import React, {useState, useEffect} from "react";
 import styles from "./style";
 import Carousel from 'react-native-snap-carousel';
 import data from './dataCarousel';
+import Cabecalho from "../../../components/Cabecalho";
 
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH * 0.70
@@ -56,7 +57,7 @@ const HomePage= ()=>{
 
     return(
         <View style={styles.container}>
-            <Text style={{marginTop: 70, color:"#fff", fontSize:25}}>Início</Text>
+            <Cabecalho title="Início"/>
             <Carousel
                 layout={"default"}
                 useScrollView
