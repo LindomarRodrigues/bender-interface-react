@@ -8,6 +8,9 @@ export default function Info() {
     return (
         <View style={styles.container}>
             <Cabecalho title="Informações"/>
+            <View>
+
+            </View>
 
         </View>
 
