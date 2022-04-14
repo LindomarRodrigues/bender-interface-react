@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import styles from "./style";
 import MontarAxiosAPI from "../../utilitarios/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CardError from './CardError'
 
 export default function Login({navigation}) {
     const [eye, setEye] = useState(true);
@@ -104,7 +105,7 @@ export default function Login({navigation}) {
                     />
 
                 </View>
-                <Text style={styles.mensagemErro}>{errorMessage}</Text>
+                {errorMessage != "" && <CardError  error={errorMessage} />}
                 <TouchableOpacity style={styles.button} onPress={entrar}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
