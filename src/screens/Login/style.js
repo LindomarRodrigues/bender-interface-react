@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   logo: {
-    height: "63%",
+    height: "59%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 20
   },
   textButton: {
     fontSize: 18,
