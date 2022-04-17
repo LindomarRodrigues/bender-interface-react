@@ -5,7 +5,7 @@ const Title = ({title}) => {
     return (
         <View style={style.container}>
             <Text style={style.title}>{title}</Text>
-            <Text style={{marginTop: 70, color: "#fff", fontSize: 25}}>oi</Text>
+            {/* <Text style={{marginTop: 70, color: "#fff", fontSize: 25}}>oi</Text> */}
         </View>
     )
 }

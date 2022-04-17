@@ -10,7 +10,7 @@ export default function Horario({navigation}) {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         const getList = async () => {
-            const req = await fetch('https://bender-api-uft-dev.herokuapp.com/listar_horarios_por_periodo')
+            const req = await fetch('https://bender-api-uft.herokuapp.com/listar_horarios_por_periodo')
             const json = await req.json()
             setList(json)
             setLoading(false)
