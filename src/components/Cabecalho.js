@@ -1,19 +1,24 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 import React, {useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Cabecalho = ({title}) => {
+const Cabecalho = ({title, navigation}) => {
     const [corUsuario, setCorUsuario] = useState(null);
     AsyncStorage.getItem('@usuario').then(r => {
         setCorUsuario(JSON.parse(r).cor)
     })
-
-
+    const handlePress = () => {
+        navigation.navigate("Perfil");
+    }
     return (
         <View style={style.container}>
             <Text style={style.title}>{title}</Text>
-            <Image source={require("../assets/images/bender_face.jpg")} style={[style.perfilPicture,
-                {borderColor: corUsuario}]}/>
+            <TouchableWithoutFeedback onPress={() => {
+                handlePress()
+            }}>
+                <Image source={require("../assets/images/bender_face.jpg")} style={[style.perfilPicture,
+                    {borderColor: corUsuario}]}/>
+            </TouchableWithoutFeedback>
         </View>
     )
 }

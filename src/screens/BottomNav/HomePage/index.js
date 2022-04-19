@@ -29,7 +29,7 @@ const OpenURL = async (url) => {
       }
   };
 
-const HomePage= ()=>{
+const HomePage= ({navigation})=>{
 
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
@@ -57,7 +57,7 @@ const HomePage= ()=>{
 
     return(
         <View style={styles.container}>
-            <Cabecalho title="Início"/>
+            <Cabecalho title="Início" navigation={navigation}/>
             <Carousel
                 layout={"default"}
                 useScrollView

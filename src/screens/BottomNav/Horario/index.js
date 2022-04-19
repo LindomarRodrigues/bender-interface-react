@@ -23,7 +23,7 @@ export default function Horario({navigation}) {
     }
     return (
         <View style={styles.container}>
-            <Cabecalho title="Horário"/>
+            <Cabecalho title="Horário" navigation={navigation}/>
             {!loading && Object.keys(list).map((item, key) => (
                 <Box title={`${item}° Período`} key={key} click={handlePress} itens={list[item]}/>))}
         </View>
