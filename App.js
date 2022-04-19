@@ -4,6 +4,7 @@ import Login from "./src/screens/Login";
 import Cadastro from "./src/screens/Cadastro";
 import BottomNav from "./src/screens/BottomNav";
 import ResultHorarios from "./src/screens/BottomNav/Horario/ResultHorarios";
+import InfoScreen from "./src/screens/BottomNav/Info/InfoScreen";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -11,8 +12,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import 'localstorage-polyfill';
 
 const Stack = createStackNavigator();
+const transparentEffect = ({ current, closing }) => ({
+        cardStyle: {
+            backgroundColor: 'transparent'
+        },
+      });
 
 export default function App() {
+    //Autenticaçao
     const [encJwt, setEncJwt] = useState(null);
     const [carregando, setCarregando] = useState(true);
 
@@ -27,31 +34,37 @@ export default function App() {
         return null;
     } else {
         return (<NavigationContainer>
+
             <Stack.Navigator initialRouteName={encJwt === null ? "BoasVindas" : "BottomNav"}>
                 <Stack.Screen
                     name="BoasVindas"
                     component={BoasVindas}
-                    options={{headerShown: false}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="Login"
                     component={Login}
-                    options={{headerShown: false}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="Cadastro"
                     component={Cadastro}
-                    options={{headerShown: false}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="BottomNav"
                     component={BottomNav}
-                    options={{headerShown: false}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="ResultHorarios"
                     component={ResultHorarios}
-                    options={{headerShown: false}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
+                />
+                <Stack.Screen
+                    name="InfoScreen"
+                    component={InfoScreen}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
             </Stack.Navigator>
         </NavigationContainer>);
