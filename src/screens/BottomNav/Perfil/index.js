@@ -1,9 +1,11 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import * as Updates from 'expo-updates';
 
 
-export default function Perfil() {
+export default function Perfil({navigation}) {
     const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
     const [nome, setNome] = useState('Fulano Ciclano Beltrano');
     const [corUsuario, setCorUsuario] = useState(null);
@@ -16,6 +18,12 @@ export default function Perfil() {
         })
     }, [])
 
+    const sair = () => {
+        localStorage.clear();
+        AsyncStorage.clear();
+        Updates.reloadAsync();
+        // navigation.navigate('Login')
+    }
     return (
         <View style={style.container}>
             <View style={style.blocoDados}>
@@ -27,6 +35,7 @@ export default function Perfil() {
                     <Text style={{fontSize: 18, color: "white"}}>Email</Text>
                     <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{email}</Text>
                 </View>
+
             </View>
             <View style={[style.cabecalho, {backgroundColor: corUsuario}]}>
                 <Image source={require("../../../assets/images/bender_fry.png")} style={style.capaFoto}/>
@@ -34,6 +43,10 @@ export default function Perfil() {
                     borderColor: corUsuario,
                 }]}/>
             </View>
+            <TouchableOpacity style={style.button} onPress={sair}>
+                {/*<Text style={style.textButton}>Sair</Text>*/}
+                <MaterialIcons name={'logout'} size={30} color={'white'}/>
+            </TouchableOpacity>
         </View>
 
     )
@@ -84,5 +97,19 @@ const style = StyleSheet.create({
         paddingHorizontal: 20,
         marginTop: 20,
 
-    }
+    },
+    button: {
+        height: 55,
+        width: 55,
+        backgroundColor: "red",
+        borderRadius: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        top: 40,
+        right: 10
+    },
+    textButton: {
+        fontSize: 18, color: "white"
+    },
 })
