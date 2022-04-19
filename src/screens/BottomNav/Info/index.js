@@ -9,6 +9,7 @@ import Title from "../../../components/Title";
 import Box from "../../../components/Box";
 import { NavigationContainer } from "@react-navigation/native";
 import { Alert } from "react-native-web";
+import Cabecalho from "../../../components/Cabecalho";
 
 export default function Info({navigation}){
 
@@ -28,7 +29,7 @@ export default function Info({navigation}){
 
     return(
         <View style={styles.container}>
-            <Title title="Informações"/>
+            <Cabecalho title="Informações" navigation={navigation}/>
             {Object.keys(list).map((item, key) => <Box title={list[item].nome} key={key} click={handlePress} itens={list[item]} />)}
         </View>
         

@@ -4,7 +4,7 @@ import Cabecalho from "../../../components/Cabecalho";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ConversasPessoas from "./ConversasPessoas";
 
-const Horario = () => {
+const Horario = ({navigation}) => {
     const [carregando, setCarregando] = useState(true);
     const [menuEscolhido, setmenuEscolhido] = useState(0);
     AsyncStorage.getItem('@enc_jwt').then(r => {
@@ -26,7 +26,7 @@ const Horario = () => {
     }
     return (
         <View style={style.container}>
-            <Cabecalho title="Chat"/>
+            <Cabecalho title="Chat" navigation={navigation}/>
             <View style={{backgroundColor: "#253341", width: "100%"}}>
                 <View style={style.menuSuperior}>
                     <View style={[style.botaoMenu, style.botaoMenuAtivo, {borderBottomLeftRadius: 30}]}>
