@@ -9,6 +9,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import 'localstorage-polyfill';
 
 const Stack = createStackNavigator();
 const transparentEffect = ({ current, closing }) => ({
@@ -21,20 +22,19 @@ export default function App() {
     //Autenticaçao
     const [encJwt, setEncJwt] = useState(null);
     const [carregando, setCarregando] = useState(true);
+
     AsyncStorage.getItem('@enc_jwt').then(r => {
-        console.log(r)
         if (r !== null) {
+            localStorage.setItem("enc_jwt", r);
             setEncJwt(r)
         }
         setCarregando(false)
     })
     if (carregando) {
         return null;
-    }
+    } else {
+        return (<NavigationContainer>
 
-    
-    return (
-        <NavigationContainer>
             <Stack.Navigator initialRouteName={encJwt === null ? "BoasVindas" : "BottomNav"}>
                 <Stack.Screen
                     name="BoasVindas"
@@ -67,6 +67,6 @@ export default function App() {
                     options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
             </Stack.Navigator>
-        </NavigationContainer>
-    );
+        </NavigationContainer>);
+    }
 }
