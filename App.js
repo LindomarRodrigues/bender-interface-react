@@ -11,12 +11,12 @@ import "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
-const forFade = ({ current, closing }) => ({
+const transparentEffect = ({ current, closing }) => ({
         cardStyle: {
-          opacity: current.progress,
+            backgroundColor: 'transparent'
         },
       });
-      
+
 export default function App() {
     //Autenticaçao
     const [encJwt, setEncJwt] = useState(null);
@@ -39,32 +39,32 @@ export default function App() {
                 <Stack.Screen
                     name="BoasVindas"
                     component={BoasVindas}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="Login"
                     component={Login}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="Cadastro"
                     component={Cadastro}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="BottomNav"
                     component={BottomNav}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="ResultHorarios"
                     component={ResultHorarios}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
                     name="InfoScreen"
                     component={InfoScreen}
-                    options={{headerShown: false, cardStyleInterpolator: forFade}}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
             </Stack.Navigator>
         </NavigationContainer>
