@@ -1,11 +1,19 @@
-import {StyleSheet, Text, View, Image} from "react-native";
-import React from "react";
+import {Image, StyleSheet, Text, View} from "react-native";
+import React, {useState} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Cabecalho = ({title}) => {
+    const [corUsuario, setCorUsuario] = useState(null);
+    AsyncStorage.getItem('@usuario').then(r => {
+        setCorUsuario(JSON.parse(r).cor)
+    })
+
+
     return (
         <View style={style.container}>
             <Text style={style.title}>{title}</Text>
-            <Image source={require("../assets/images/bender_face.jpg")} style={style.perfilPicture }/>
+            <Image source={require("../assets/images/bender_face.jpg")} style={[style.perfilPicture,
+                {borderColor: corUsuario}]}/>
         </View>
     )
 }
@@ -22,7 +30,7 @@ const style = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems:"center",
+        alignItems: "center",
         width: "100%",
         backgroundColor: "#253341"
     },
@@ -34,6 +42,7 @@ const style = StyleSheet.create({
     perfilPicture: {
         width: 50,
         height: 50,
-        borderRadius: 100
+        borderRadius: 100,
+        borderWidth: 2
     }
 })

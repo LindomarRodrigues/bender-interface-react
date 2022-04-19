@@ -4,28 +4,18 @@ import Email from "react-native-vector-icons/MaterialIcons";
 import React, {useEffect, useState} from "react";
 import styles from "./style";
 import MontarAxiosAPI from "../../utilitarios/axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import CardError from './CardError'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({navigation}) {
     const [eye, setEye] = useState(true);
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [encJwt, setEncJwt] = useState("")
-
-
-    useEffect(() => {
-        AsyncStorage.setItem('@enc_jwt', encJwt).then(r => {
-
-            console.log(encJwt)
-        })
-    }, [encJwt]);
 
     useEffect(() => {
         setErrorMessage("")
     }, [email, senha])
-
 
     const entrar = () => {
         const axiosApi = MontarAxiosAPI();
@@ -40,13 +30,12 @@ export default function Login({navigation}) {
                 })
                 .then(r => {
                     let resposta = r.data;
-
-                    console.log(resposta)
                     if (resposta.status) {
-                        console.log(resposta)
                         AsyncStorage.setItem('@enc_jwt', r.data.access_token).then(r => {
+                            localStorage.setItem("enc_jwt", r.data.access_token);
                             navigation.navigate("BottomNav");
                         })
+
                     } else {
                         setErrorMessage(resposta.erro);
                     }
@@ -105,7 +94,7 @@ export default function Login({navigation}) {
                     />
 
                 </View>
-                {errorMessage != "" && <CardError  error={errorMessage} />}
+                {errorMessage != "" && <CardError error={errorMessage}/>}
                 <TouchableOpacity style={styles.button} onPress={entrar}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>

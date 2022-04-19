@@ -1,11 +1,20 @@
 import {Image, StyleSheet, Text, View} from "react-native";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function Perfil() {
     const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
     const [nome, setNome] = useState('Fulano Ciclano Beltrano');
+    const [corUsuario, setCorUsuario] = useState(null);
 
+    useEffect(() => {
+        AsyncStorage.getItem('@usuario').then(r => {
+            setCorUsuario(JSON.parse(r).cor)
+            setEmail(JSON.parse(r).email)
+            setNome(JSON.parse(r).nome)
+        })
+    }, [])
 
     return (
         <View style={style.container}>
@@ -19,9 +28,11 @@ export default function Perfil() {
                     <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{email}</Text>
                 </View>
             </View>
-            <View style={style.cabecalho}>
+            <View style={[style.cabecalho, {backgroundColor: corUsuario}]}>
                 <Image source={require("../../../assets/images/bender_fry.png")} style={style.capaFoto}/>
-                <Image source={require("../../../assets/images/bender_face.jpg")} style={style.perfilFoto}/>
+                <Image source={require("../../../assets/images/bender_face.jpg")} style={[style.perfilFoto, {
+                    borderColor: corUsuario,
+                }]}/>
             </View>
         </View>
 
@@ -38,7 +49,7 @@ const style = StyleSheet.create({
     cabecalho: {
         width: "100%",
         height: 60 + 200,
-        backgroundColor: "#00bbff",
+
         position: "absolute",
         top: 0,
         left: 0
@@ -53,7 +64,6 @@ const style = StyleSheet.create({
         height: 100,
         borderRadius: 100,
         borderWidth: 5,
-        borderColor: "#00bbff",
         position: "absolute",
         top: 210,
         left: 280
