@@ -30,7 +30,7 @@ const ConversasPessoas = ({}) => {
     }, [])
     return (
         <View style={style.container}>
-            {conversas.map(conversa => <Conversa foto_perfil={require("../../../assets/images/bender_face.jpg")}
+            {conversas && conversas.map(conversa => <Conversa foto_perfil={require("../../../assets/images/bender_face.jpg")}
                                                  nome={conversa.e_autor ? conversa.receptor_nome : conversa.autor_nome}
                                                  ultima_mensagem={conversa.ultima_mensagem}
                                                  data_hora_ultima_mensagem={conversa.ultima_mensagem_horario}

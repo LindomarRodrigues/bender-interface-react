@@ -19,19 +19,16 @@ export default function BottomNav() {
     const [corUsuario, setCorUsuario] = useState(null);
 
 
-    useEffect(() => {
-        axios.get(`${Constantes.URL_BASE}/usuario/usuario`, {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem('enc_jwt')}`
-            }
-        }).then(r => {
-            let resposta = r.data;
-            AsyncStorage.setItem('@usuario', JSON.stringify(resposta));
-            setCorUsuario(resposta.cor)
-            setCarregando(false)
-        })
-
-    }, []);
+    axios.get(`${Constantes.URL_BASE}/usuario/usuario`, {
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem('enc_jwt')}`
+        }
+    }).then(r => {
+        let resposta = r.data;
+        AsyncStorage.setItem('@usuario', JSON.stringify(resposta));
+        setCorUsuario(resposta.cor)
+        setCarregando(false)
+    })
 
 
     if (carregando === true) {

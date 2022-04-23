@@ -28,11 +28,11 @@ export default function Login({navigation}) {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 })
-                .then(r => {
-                    let resposta = r.data;
+                .then(response => {
+                    let resposta = response.data;
                     if (resposta.status) {
-                        AsyncStorage.setItem('@enc_jwt', r.data.access_token).then(r => {
-                            localStorage.setItem("enc_jwt", r.data.access_token);
+                        AsyncStorage.setItem('@enc_jwt', resposta.access_token).then(r => {
+                            localStorage.setItem("enc_jwt", resposta.access_token);
                             navigation.navigate("BottomNav");
                         })
 
