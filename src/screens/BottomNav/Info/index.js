@@ -26,7 +26,9 @@ export default function Info({navigation}){
     return (
         <View style={styles.container}>
             <Cabecalho title="Informações" navigation={navigation}/>
-            {Object.keys(list).map((item, key) => <Box title={list[item].nome} key={key} click={handlePress} itens={list[item]} />)}
+            <View style={styles.itens}>
+              {Object.keys(list).map((item, key) => <Box title={list[item].nome} key={key} click={handlePress} itens={list[item]} />)}
+            </View>
         </View>
 
     )

@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import {DrawerContentScrollView, DrawerItemList} from '@react-navigation/drawer'
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Updates from 'expo-updates';
-
+ 
 const CustomDrawer = ({...props})=>{
+
+    const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
+    const [nome, setNome] = useState('Fulano Ciclano Beltrano');
+
+    useEffect(() => {
+        AsyncStorage.getItem('@usuario').then(r => {
+            setEmail(JSON.parse(r).email)
+            setNome(JSON.parse(r).nome)
+        })
+    }, [])
 
     const sair = () => {
         localStorage.clear();
@@ -21,8 +31,8 @@ const CustomDrawer = ({...props})=>{
             contentContainerStyle={{backgroundColor: '#15202B', paddingBottom:20}}>
                 <ImageBackground source={require('../../assets/images/fundo.jpg')} style={{padding: 20, marginBottom: 20, height: 200}}>
                     <Image source={require('../../assets/images/rostoBender.png')} style={{height: 80, width: 80}}/>
-                    <Text style={{color:'#fff', fontSize:16, marginTop:10}}>Rafael Silva</Text>
-                    <Text style={{color:'#fff', fontSize:14}}>rafael@gmail.com</Text>
+                    <Text style={{color:'#fff', fontSize:16, marginTop:10}}>{nome}</Text>
+                    <Text style={{color:'#fff', fontSize:14}}>{email}</Text>
                 </ImageBackground>
                 <DrawerItemList {...props}/>
             </DrawerContentScrollView>
