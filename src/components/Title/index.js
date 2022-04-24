@@ -13,12 +13,12 @@ export default Title;
 
 const style = StyleSheet.create({
     container: {
-        marginTop: 70,
+        marginTop: 30,
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         width: "100%",
-        marginLeft: 50,
+        marginLeft: 20,
         marginBottom: 20
     },
     title: {
