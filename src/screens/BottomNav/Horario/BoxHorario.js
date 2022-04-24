@@ -56,7 +56,7 @@ const BoxHorario = (props) => {
           ]}
         />
       </TouchableOpacity>
-       { mbox && Object.keys(props.content).map((item,key)=>(<RowInfo horario={props.content[item].horario} nome={props.content[item].nome}/>))}
+       { mbox && Object.keys(props.content).map((item,key)=>(<RowInfo horario={props.content[item].horario} nome={props.content[item].nome} key={key}/>))}
     </View>
   );
 };
