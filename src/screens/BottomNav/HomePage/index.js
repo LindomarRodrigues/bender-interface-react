@@ -34,14 +34,14 @@ const HomePage= ({navigation})=>{
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
 
-    useEffect(()=>{
-        const getList = async ()=>{
-            const req = await (await fetch('https://bender-api-uft-dev.herokuapp.com/listar_grupos_telegram_por_periodo')).json();
-            setList(req);
-            setLoading(false);
-        }
-        getList();
-    },[]);
+    // useEffect(()=>{
+    //     const getList = async ()=>{
+    //         const req = await (await fetch('https://bender-api-uft-dev.herokuapp.com/listar_grupos_telegram_por_periodo')).json();
+    //         setList(req);
+    //         setLoading(false);
+    //     }
+    //     getList();
+    // },[]);
 
 
     function renderItem({item, index}){
