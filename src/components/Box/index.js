@@ -19,7 +19,7 @@ const Box = (props) => {
         props.CustomMarginBottom ? { marginBottom: 20 } : {},
       ]}
     >
-      <TouchableOpacity style={styles.box} onPress={()=>{props.click(props.itens)}}>
+      <TouchableOpacity style={styles.box} onPress={()=>{props.click(props.itens,props.title)}}>
         <Text style={[styles.title, mbox ? { marginTop: 10 } : {}]}>
           {props.title}
         </Text>
