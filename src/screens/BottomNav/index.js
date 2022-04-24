@@ -6,6 +6,7 @@ import Perfil from "./Perfil";
 import Chat from "./Chat";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import DrawerNav from "./DrawerNav";
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import axios from "axios";
@@ -60,7 +61,7 @@ export default function BottomNav() {
                 } else if (route.name === 'Chat') {
                     iconName = 'chat'
                     iconSize = 30
-                } else if (route.name === 'Perfil') {
+                } else if (route.name === 'DrawerNav') {
                     iconName = 'person-circle-outline'
                     iconSize = 30
 
@@ -77,6 +78,6 @@ export default function BottomNav() {
         <Tab.Screen name="Chat" component={Chat} options={{headerShown: false}}/>
         <Tab.Screen name="Horario" component={Horario} options={{headerShown: false}}/>
         <Tab.Screen name="Info" component={Info} options={{headerShown: false}}/>
-        <Tab.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
+        <Tab.Screen name="DrawerNav" component={DrawerNav} options={{headerShown: false}}/>
     </Tab.Navigator>)
 }

@@ -1,9 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import * as Updates from 'expo-updates';
-
 
 export default function Perfil({navigation}) {
     const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
@@ -18,22 +15,16 @@ export default function Perfil({navigation}) {
         })
     }, [])
 
-    const sair = () => {
-        localStorage.clear();
-        AsyncStorage.clear();
-        Updates.reloadAsync();
-        // navigation.navigate('Login')
-    }
     return (
         <View style={style.container}>
             <View style={style.blocoDados}>
                 <View style={[style.campoDado, {marginTop: 10}]}>
-                    <Text style={{fontSize: 18, color: "white"}}>Nome</Text>
-                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{nome}</Text>
+                    <Text style={{fontSize: 16, color: "white"}}>Nome</Text>
+                    <Text style={{fontSize: 18, color: "white", fontWeight: "bold"}}>{nome}</Text>
                 </View>
                 <View style={[style.campoDado, {marginTop: 30}]}>
-                    <Text style={{fontSize: 18, color: "white"}}>Email</Text>
-                    <Text style={{fontSize: 20, color: "white", fontWeight: "bold"}}>{email}</Text>
+                    <Text style={{fontSize: 16, color: "white"}}>Email</Text>
+                    <Text style={{fontSize: 18, color: "white", fontWeight: "bold"}}>{email}</Text>
                 </View>
 
             </View>
@@ -43,10 +34,6 @@ export default function Perfil({navigation}) {
                     borderColor: corUsuario,
                 }]}/>
             </View>
-            <TouchableOpacity style={style.button} onPress={sair}>
-                {/*<Text style={style.textButton}>Sair</Text>*/}
-                <MaterialIcons name={'logout'} size={30} color={'white'}/>
-            </TouchableOpacity>
         </View>
 
     )
@@ -93,7 +80,7 @@ const style = StyleSheet.create({
     campoDado: {
         backgroundColor: "#253341",
         padding: 10,
-        borderRadius: 30,
+        borderRadius: 10,
         paddingHorizontal: 20,
         marginTop: 20,
 
