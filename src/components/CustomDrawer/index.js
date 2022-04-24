@@ -9,9 +9,11 @@ const CustomDrawer = ({...props})=>{
 
     const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
     const [nome, setNome] = useState('Fulano Ciclano Beltrano');
+    const [corUsuario, setCorUsuario] = useState(null);
 
     useEffect(() => {
         AsyncStorage.getItem('@usuario').then(r => {
+            setCorUsuario(JSON.parse(r).cor)
             setEmail(JSON.parse(r).email)
             setNome(JSON.parse(r).nome)
         })
@@ -29,11 +31,14 @@ const CustomDrawer = ({...props})=>{
             <DrawerContentScrollView
             {...props}
             contentContainerStyle={{backgroundColor: '#15202B', paddingBottom:20}}>
-                <ImageBackground source={require('../../assets/images/fundo.jpg')} style={{padding: 20, marginBottom: 20, height: 200}}>
+                <View style={{padding: 20, marginBottom: 10, height: 120, backgroundColor: corUsuario}}>
                     <Image source={require('../../assets/images/rostoBender.png')} style={{height: 80, width: 80}}/>
-                    <Text style={{color:'#fff', fontSize:16, marginTop:10}}>{nome}</Text>
-                    <Text style={{color:'#fff', fontSize:14}}>{email}</Text>
-                </ImageBackground>
+                </View>
+                <View style={{paddingHorizontal: 10, height: 70}}>
+                  <Text style={{color:'#fff', fontSize:16, marginTop:10}}>{nome}</Text>
+                  <Text style={{color:'#aaaaaa', fontSize:14}}>{email}</Text>  
+                </View>
+                
                 <DrawerItemList {...props}/>
             </DrawerContentScrollView>
             <View style={{marginBottom:10}}>
