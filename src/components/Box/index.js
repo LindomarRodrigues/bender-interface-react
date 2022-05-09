@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    width: "80%",
+    width: "90%",
     backgroundColor: "#253341",
     borderRadius: 10,
     marginTop: 15,
