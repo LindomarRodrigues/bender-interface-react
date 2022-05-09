@@ -10,19 +10,19 @@ const InfoScreen = ({route, navigation}) =>{
     }
 
     const list = route.params.itens
-    // const api = list.api
+    const api = list.api
 
-    // const [content, setContent] = useState([])
+    const [content, setContent] = useState([])
     const [loading, setLoading] = useState(true)
-    // useEffect(() => {
-    //     const getContent = async () => {
-    //         const req = await fetch(api)
-    //         const json = await req.json()
-    //         setContent(json)
-    //         setLoading(false)
-    //     }
-    //     getContent()
-    // }, [])
+    useEffect(() => {
+        const getContent = async () => {
+            const req = await fetch(api)
+            const json = await req.json()
+            setContent(json)
+            setLoading(false)
+        }
+        getContent()
+    }, [])
 
     return(
         <ScrollView style={{backgroundColor: "#15202B"}}>
@@ -36,8 +36,8 @@ const InfoScreen = ({route, navigation}) =>{
                 />
                 <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
             </TouchableOpacity>
-            {/* {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].email} title={content[item].nome} key={key}/>))} */}
-            <MessageBox title={list.nome} content={list.nome} type={list.file}/>
+            {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].email} title={content[item].nome} key={key} type={list.file}/>))}
+            {/* <MessageBox title={list.nome} content={list.nome} type={list.file}/> */}
         </View>
         </ScrollView>
     )
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         height: "100%",
         flex: 1,
         alignItems: "center",
-        paddingTop: 80
+        paddingTop: 80,
+        paddingBottom:50
       },
       seta:{
         display: "flex",
