@@ -1,109 +1,105 @@
-import {
-  View,
-  Button,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import {Image, Text, TextInput, TouchableOpacity, View,} from "react-native";
 import Eye from "react-native-vector-icons/Ionicons";
 import Email from "react-native-vector-icons/MaterialIcons";
-import React, { useState,useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./style";
-import {auth} from "../../services/firebase";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"; 
+import MontarAxiosAPI from "../../utilitarios/axios";
+import CardError from './CardError'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Login({ navigation }) {
+export default function Login({navigation}) {
+    const [eye, setEye] = useState(true);
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-  const [eye, setEye] = useState(true);
-  //auth
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+    useEffect(() => {
+        setErrorMessage("")
+    }, [email, senha])
 
-  useEffect(() => {
-    //navigation
-    if (auth.currentUser) {
-      navigation.navigate("BottomNav");
-    } else {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          navigation.navigate("BottomNav");
+    const entrar = () => {
+        const axiosApi = MontarAxiosAPI();
+        if (email !== "" && senha !== "") {
+            axiosApi.post('/autenticacao/entrar',
+                `grant_type=&username=${email}&password=${senha}&scope=&client_id=&client_secret=`,
+                {
+                    headers: {
+                        'accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => {
+                    let resposta = response.data;
+                    if (resposta.status) {
+                        AsyncStorage.setItem('@enc_jwt', resposta.access_token).then(r => {
+                            localStorage.setItem("enc_jwt", resposta.access_token);
+                            navigation.navigate("BottomNav");
+                        })
+
+                    } else {
+                        setErrorMessage(resposta.erro);
+                    }
+                })
+        } else {
+            setErrorMessage("Insira o email e senha para entrar!");
         }
-      });
     }
-  });
 
-  const login = ()=>{
-    if (email !== "" && password !== "") {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          navigation.navigate("BottomNav", { user: userCredential.user });
-          setEmail("");
-          setPassword("");
-          setErrorMessage("");
-        })
-        .catch((error) => {
-          setErrorMessage("Erro ao entrar");
-        });
-    } else {
-      setErrorMessage("Insira o email e senha de cadastro para entrar");
-    }
-  };
+    const handlePress = () => {
+        setEye((state) => !state);
+    };
+    const nav = () => {
+        navigation.navigate("Cadastro");
+    };
+    return (
+        <View style={styles.container}>
+            <View style={styles.logo}>
+                <Image
+                    style={styles.image}
+                    source={require("../../assets/images/bender.png")}
+                    resizeMode="contain"
+                />
+            </View>
+            <View style={styles.box}>
+                <View style={styles.inputBox}>
+                    <Email
+                        name="email"
+                        size={20}
+                        color="#C7CDCD"
+                        style={{marginRight: 10}}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        value={email}
+                        placeholder="Email:"
+                        placeholderTextColor={"#C7CDCD"}
+                        onChangeText={(text) => setEmail(text)}
+                    />
+                </View>
+                <View style={styles.inputBox}>
+                    <Eye
+                        name={eye ? "eye-off" : "eye"}
+                        size={20}
+                        color="#C7CDCD"
+                        style={{marginRight: 10}}
+                        onPress={handlePress}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        value={senha}
+                        placeholder="Senha:"
+                        placeholderTextColor={"#C7CDCD"}
+                        secureTextEntry={eye}
+                        onChangeText={(text) => setSenha(text)}
+                    />
 
-  const handlePress = () => {
-    setEye((state) => !state);
-  };
-  const nav = () => {
-    navigation.navigate("Cadastro");
-  };
-  return (
-    <View style={styles.container}>
-      <View style={styles.logo}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/images/bender.png")}
-          resizeMode="contain"
-        ></Image>
-      </View>
-      <View style={styles.box}>
-        <View style={styles.inputBox}>
-          <Email
-            name="email"
-            size={20}
-            color="#C7CDCD"
-            style={{ marginRight: 10 }}
-          />
-          <TextInput
-            style={styles.input}
-            value = {email}
-            placeholder="Email:"
-            placeholderTextColor={"#C7CDCD"}
-            onChangeText={(text) => setEmail(text)}
-          />
+                </View>
+                {errorMessage != "" && <CardError error={errorMessage}/>}
+                <TouchableOpacity style={styles.button} onPress={entrar}>
+                    <Text style={styles.textButton}>Entrar</Text>
+                </TouchableOpacity>
+                <Text style={[styles.textButton, {marginTop: 20}]} onPress={nav}>Cadastre-se</Text>
+            </View>
         </View>
-        <View style={styles.inputBox}>
-          <Eye
-            name={eye ? "eye-off" : "eye"}
-            size={20}
-            color="#C7CDCD"
-            style={{ marginRight: 10 }}
-            onPress={handlePress}
-          />
-          <TextInput
-            style={styles.input}
-            value = {password}
-            placeholder="Senha:"
-            placeholderTextColor={"#C7CDCD"}
-            secureTextEntry={eye}
-            onChangeText={(text) => setPassword(text)}
-          />
-        </View>
-        <TouchableOpacity style={styles.button} onPress={login}>
-          <Text style={styles.textButton}>Entrar</Text>
-        </TouchableOpacity>
-        <Text style={[styles.textButton, { marginTop: 20 }]} onPress={nav}>Cadastre-se</Text>
-      </View>
-    </View>
-  );
+    );
 }

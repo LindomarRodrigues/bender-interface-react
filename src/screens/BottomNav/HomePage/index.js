@@ -13,6 +13,7 @@ import React, {useState, useEffect} from "react";
 import styles from "./style";
 import Carousel from 'react-native-snap-carousel';
 import data from './dataCarousel';
+import Cabecalho from "../../../components/Cabecalho";
 
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH * 0.70
@@ -28,19 +29,19 @@ const OpenURL = async (url) => {
       }
   };
 
-const HomePage= ()=>{
+const HomePage= ({navigation})=>{
 
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
 
-    useEffect(()=>{
-        const getList = async ()=>{
-            const req = await (await fetch('https://bender-api-uft-dev.herokuapp.com/listar_grupos_telegram_por_periodo')).json();
-            setList(req);
-            setLoading(false);
-        }
-        getList();
-    },[]);
+    // useEffect(()=>{
+    //     const getList = async ()=>{
+    //         const req = await (await fetch('https://bender-api-uft-dev.herokuapp.com/listar_grupos_telegram_por_periodo')).json();
+    //         setList(req);
+    //         setLoading(false);
+    //     }
+    //     getList();
+    // },[]);
 
 
     function renderItem({item, index}){
@@ -56,7 +57,7 @@ const HomePage= ()=>{
 
     return(
         <View style={styles.container}>
-            <Text style={{marginTop: 70, color:"#fff", fontSize:25}}>Início</Text>
+            <Cabecalho title="Início" navigation={navigation}/>
             <Carousel
                 layout={"default"}
                 useScrollView

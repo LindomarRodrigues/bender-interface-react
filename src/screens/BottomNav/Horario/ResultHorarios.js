@@ -1,23 +1,23 @@
-import react from "react";
 import {
     View,
-    Button,
-    Text,
-    Image,
-    TextInput,
-    TouchableOpacity,
     StyleSheet,
-    SafeAreaView,
+    ScrollView
 }from "react-native";
-import Box from '../../../components/Box'
+import BoxHorario from "./BoxHorario";
+import Voltar from "../../../components/Voltar"
 
-const ResultHorarios = ({route})=>{
+const ResultHorarios = ({route,navigation})=>{
     const list = route.params.itens
+    const title = route.params.title
+    //console.log(title)
     return(
+        <ScrollView style={{backgroundColor: "#15202B"}}>
         <View style={styles.container}>
-            <View ></View> 
-            {Object.keys(list).map((item,key)=>(<Box title={`${list[item].disciplina_nome}  (${list[item].turma.toUpperCase()})`} key={key}/>))}
+            <Voltar navigation={navigation} title={title}/>
+            {Object.keys(list).map((item,key)=> <BoxHorario title={item} content={list[item]} key={key}/> 
+            )}
         </View>
+        </ScrollView>
     )
 }
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         height: "100%",
         flex: 1,
         alignItems: "center",
-        paddingTop: 80
+        paddingVertical: 80
       }
 }
 )

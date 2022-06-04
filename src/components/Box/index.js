@@ -19,7 +19,7 @@ const Box = (props) => {
         props.CustomMarginBottom ? { marginBottom: 20 } : {},
       ]}
     >
-      <TouchableOpacity style={styles.box} onPress={()=>{props.click(props.itens)}}>
+      <TouchableOpacity style={styles.box} onPress={()=>{props.click(props.itens,props.title)}}>
         <Text style={[styles.title, mbox ? { marginTop: 10 } : {}]}>
           {props.title}
         </Text>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    width: "80%",
+    width: "90%",
     backgroundColor: "#253341",
     borderRadius: 10,
     marginTop: 15,

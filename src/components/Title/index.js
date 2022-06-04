@@ -1,26 +1,27 @@
-import {Text, StyleSheet,View}from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import React from "react";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const Title = ({title})=>{
-    return(
+const Title = ({title}) => {
+    return (
         <View style={style.container}>
             <Text style={style.title}>{title}</Text>
+            {/* <Text style={{marginTop: 70, color: "#fff", fontSize: 25}}>oi</Text> */}
         </View>
     )
 }
 export default Title;
 
 const style = StyleSheet.create({
-    container:{
-      marginTop: 70,
-      display: "flex",
-      justifyContent: "flex-start",
-      width: "100%",
-      marginLeft: 50,
-      marginBottom: 20
+    container: {
+        marginTop: 30,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        width: "100%",
+        marginLeft: 20,
+        marginBottom: 20
     },
-    title:{
+    title: {
         fontSize: 24,
         fontWeight: "bold",
         color: "#fff",

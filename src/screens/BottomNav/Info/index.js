@@ -1,24 +1,35 @@
-import {
-    View,
-    Button,
-    Text,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    SafeAreaView,
-} 
-from "react-native";
-import React from "react";
+import {View,} from "react-native";
+import React, {useEffect, useState} from "react";
 import styles from "./style";
+import data from "./dataInfo";
+import Title from "../../../components/Title";
+import Box from "../../../components/Box";
+import { NavigationContainer } from "@react-navigation/native";
+import { Alert } from "react-native-web";
+import Cabecalho from "../../../components/Cabecalho";
 
+export default function Info({navigation}){
+    const [list, setList] = useState([]);
+    const [loading, setLoading] = useState(true)
 
-export default function Info(){
-    return(
+    useEffect(() => {
+        const getList = () => {
+            setList(data);
+        }
+        getList()
+    }, [])
+
+    const handlePress = (val) => {
+        navigation.push("InfoScreen", {itens: val})
+    }
+
+    return (
         <View style={styles.container}>
-            <Text style={{color:'#fff', fontSize:18}}>Pagina de Informações</Text>
-            
+            <Cabecalho title="Informações" navigation={navigation}/>
+            <View style={styles.itens}>
+              {Object.keys(list).map((item, key) => <Box title={list[item].nome} key={key} click={handlePress} itens={list[item]} />)}
+            </View>
         </View>
-        
+
     )
 }
