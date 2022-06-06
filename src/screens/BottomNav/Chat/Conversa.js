@@ -1,23 +1,30 @@
-import {Image, StyleSheet, Text, View} from "react-native";
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
-import * as Constantes from "../../../utilitarios/Constantes";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React from "react";
 
-const Conversa = ({foto_perfil, nome, ultima_mensagem, data_hora_ultima_mensagem, usuario_cor}) => {
+const Conversa = ({
+                      foto_perfil,
+                      nome,
+                      ultima_mensagem,
+                      data_hora_ultima_mensagem,
+                      usuario_cor,
+                      navigation,
+                      conversa_id
+                  }) => {
 
-    return (<View style={style.conversa}>
+    return (<TouchableOpacity style={style.conversa} onPress={() => {
+        navigation.navigate("Mensagens", {pessoa_nome: nome, pessoa_cor: usuario_cor, conversa_id: conversa_id});
+    }}>
         <View style={{flexDirection: "row"}}>
             <Image source={foto_perfil} style={[style.perfilPicture, {borderColor: usuario_cor}]}/>
             <View style={style.blocoNomeMensagem}>
-                <Text style={{fontSize: 18, color: "black", fontWeight: "bold"}}>{nome}</Text>
+                <Text style={{fontSize: 15, color: "black", fontWeight: "bold"}}>{nome}</Text>
                 <Text style={{fontSize: 12, color: "gray",}}>{ultima_mensagem}</Text>
             </View>
         </View>
         <View style={style.blocoHorarioConfirmacao}>
             <Text style={{fontSize: 12, color: "gray"}}>{data_hora_ultima_mensagem}</Text>
         </View>
-    </View>)
+    </TouchableOpacity>)
 }
 export default Conversa;
 
@@ -36,7 +43,7 @@ const style = StyleSheet.create({
         borderWidth: 3
 
     }, perfilPicture: {
-        width: 60, height: 60, borderRadius: 100, borderWidth:2
+        width: 60, height: 60, borderRadius: 100, borderWidth: 2
     }, blocoNomeMensagem: {
         justifyContent: "space-between", paddingLeft: 10, paddingVertical: 5
     }, blocoHorarioConfirmacao: {

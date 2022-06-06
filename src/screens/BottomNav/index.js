@@ -79,5 +79,6 @@ export default function BottomNav() {
         <Tab.Screen name="Horario" component={Horario} options={{headerShown: false}}/>
         <Tab.Screen name="Info" component={Info} options={{headerShown: false}}/>
         <Tab.Screen name="DrawerNav" component={DrawerNav} options={{headerShown: false}}/>
+        {/*<Tab.Screen name="Mensagens" component={DrawerNav} options={{headerShown: false}}/>*/}
     </Tab.Navigator>)
 }
