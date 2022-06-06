@@ -8,7 +8,7 @@ const Cabecalho = ({title, navigation}) => {
         setCorUsuario(JSON.parse(r).cor)
     })
     const handlePress = () => {
-        navigation.navigate("Perfil");
+        navigation.navigate("DrawerNav");
     }
     return (
         <View style={style.container}>
