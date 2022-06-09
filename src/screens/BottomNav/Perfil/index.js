@@ -1,11 +1,16 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default function Perfil({navigation}) {
     const [email, setEmail] = useState('fulanociclanobeltrano@mail.com');
     const [nome, setNome] = useState('Fulano Ciclano Beltrano');
     const [corUsuario, setCorUsuario] = useState(null);
+
+    const nav = () => {
+        navigation.navigate("Personalize");
+    };
 
     useEffect(() => {
         AsyncStorage.getItem('@usuario').then(r => {
@@ -25,6 +30,17 @@ export default function Perfil({navigation}) {
                 <View style={[style.campoDado, {marginTop: 30}]}>
                     <Text style={{fontSize: 16, color: "white"}}>Email</Text>
                     <Text style={{fontSize: 18, color: "white", fontWeight: "bold"}}>{email}</Text>
+                </View>
+                <View>
+                    <TouchableOpacity style={style.buttonNav} onPress={nav}>
+                        <Text style={style.textButtonNav}>Personalizar seu Horário</Text>
+                        <MaterialIcons
+                            name="arrow-forward-ios"
+                            size={20}
+                            color="#C7CDCD"
+                            style={{ marginRight: 2 }}
+                        />
+                    </TouchableOpacity>
                 </View>
 
             </View>
@@ -98,5 +114,23 @@ const style = StyleSheet.create({
     },
     textButton: {
         fontSize: 18, color: "white"
+    },
+    buttonNav: {
+        width: "100%",
+        height: 60,
+        backgroundColor: "#253341",
+        borderRadius: 10,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: 30,
+        paddingLeft:20,
+        paddingRight:20,
+        position: 'absolute',
+      },
+      textButtonNav: {
+        fontSize: 16,
+        color: "#fff",
     },
 })

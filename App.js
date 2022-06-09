@@ -7,6 +7,7 @@ import BottomNav from "./src/screens/BottomNav";
 import DrawerNav from "./src/screens/BottomNav/DrawerNav";
 import ResultHorarios from "./src/screens/BottomNav/Horario/ResultHorarios";
 import InfoScreen from "./src/screens/BottomNav/Info/InfoScreen";
+import Personalize from './src/screens/BottomNav/Perfil/personalize';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -77,6 +78,11 @@ export default function App() {
                 <Stack.Screen
                     name="InfoScreen"
                     component={InfoScreen}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
+                />
+                <Stack.Screen
+                    name="Personalize"
+                    component={Personalize}
                     options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
             </Stack.Navigator>

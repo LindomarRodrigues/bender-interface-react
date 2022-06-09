@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
     width: 300,
     borderWidth: 1,
     borderColor: "#666",
+  },
+  container2: {
+    display: 'none'
   }
 });
 
