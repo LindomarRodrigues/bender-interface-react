@@ -35,7 +35,8 @@ const Conversas = ({navigation}) => {
                                                           data_hora_ultima_mensagem={DateTime.fromISO(conversa.ultima_mensagem_horario).toLocaleString()}
                                                           usuario_cor={conversa.e_autor ? conversa.receptor_cor : conversa.autor_cor}
                                                           key={conversa.id}
-                                                          conversa_id={conversa.id}/>)}
+                                                          conversa_id={conversa.id}
+                                                          e_autor={conversa.e_autor}/>)}
     </View>)
 }
 export default Conversas;

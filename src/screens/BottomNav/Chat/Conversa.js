@@ -8,11 +8,17 @@ const Conversa = ({
                       data_hora_ultima_mensagem,
                       usuario_cor,
                       navigation,
-                      conversa_id
+                      conversa_id,
+                      e_autor
                   }) => {
 
     return (<TouchableOpacity style={style.conversa} onPress={() => {
-        navigation.navigate("Mensagens", {pessoa_nome: nome, pessoa_cor: usuario_cor, conversa_id: conversa_id});
+        navigation.navigate("Mensagens", {
+            pessoa_nome: nome,
+            pessoa_cor: usuario_cor,
+            conversa_id: conversa_id,
+            e_autor: 0
+        });
     }}>
         <View style={{flexDirection: "row"}}>
             <Image source={foto_perfil} style={[style.perfilPicture, {borderColor: usuario_cor}]}/>
