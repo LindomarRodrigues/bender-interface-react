@@ -13,7 +13,9 @@ import {NavigationContainer} from "@react-navigation/native";
 import "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import 'localstorage-polyfill';
-
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+import Mensagens from "./src/screens/BottomNav/Chat/Mensagens";
 const Stack = createStackNavigator();
 
 const MyTheme = {
@@ -78,6 +80,11 @@ export default function App() {
                 <Stack.Screen
                     name="InfoScreen"
                     component={InfoScreen}
+                    options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
+                />
+                <Stack.Screen
+                    name="Mensagens"
+                    component={Mensagens}
                     options={{headerShown: false, cardStyleInterpolator: transparentEffect}}
                 />
                 <Stack.Screen
