@@ -8,7 +8,7 @@ const InfoScreen = ({route, navigation}) =>{
     const handlePress = () =>{
         navigation.pop();
     }
-
+ 
     const list = route.params.itens
     const api = list.api
 
