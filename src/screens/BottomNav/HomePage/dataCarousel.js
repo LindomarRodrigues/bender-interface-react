@@ -1,31 +1,32 @@
 export default data = [
-    {
-      "nome":"Grupo Oficial de Ciência da Computação",
-      "link":"https://t.me/joinchat/Ged29z979rG1qar0AWx2IA"
-    },
-    {
-      "nome":"Projeto de sistemas",
-      "link":"https://t.me/joinchat/Ged29xBuZXxHQBUkbajA6g"
-   },
    {
-      "nome":"Linguagens formais e autômatos",
-      "link":"https://t.me/joinchat/Ged29xI2ajq-hdgAbQ8uKQ"
-   },
-   {
-      "nome":"Redes de computadores",
-      "link":"https://t.me/joinchat/Ged29xSpoeHO7zNiBGU0qQ"
-   },
-   {
-      "nome":"Processamento de Imagens",
-      "link":"https://t.me/joinchat/Ged29xcURWH-XIn8X8H4UA"
-   },
-   {
-      "nome":"Projeto e análise de algoritmos",
-      "link":"https://t.me/joinchat/Ged29xZqhMtzZLJegfj_5A"
-   },
-   {
-      "nome":"Organização de computadores",
-      "link":"https://t.me/joinchat/Ged29xRkEQkL_-ykdgdJig"
-   }
-  
-    ]
+     "nome":"E-mail dos professores",
+     "api": "http://192.168.100.8:8000/professores/professores",
+     "file": false,
+     "tipo": 1
+  },
+  {
+     "nome":"Lattes dos docentes",
+     "api": "https://paraclorobenzilpirrolidinonetilbenzimidazol.loca.lt/listar_emails_professores",
+     "file": false,
+     "tipo": 2
+  },
+  {
+     "nome":"Contatos da Coordenação",
+     "api": "http://192.168.100.8:8000/contatosCoordenacao/contatosCoordenacao",
+     "file": false,
+     "tipo": 3
+  },
+  {
+     "nome":"Matriz curricular",
+     "api": "https://paraclorobenzilpirrolidinonetilbenzimidazol.loca.lt/listar_emails_professores",
+     "file": true,
+     "tipo": 4
+  },
+  {
+     "nome":"PPC",
+     "api": "https://paraclorobenzilpirrolidinonetilbenzimidazol.loca.lt/listar_emails_professores",
+     "file": true,
+     "tipo": 4
+  }
+   ]

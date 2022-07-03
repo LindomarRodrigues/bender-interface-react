@@ -18,29 +18,88 @@ const InfoScreen = ({route, navigation}) =>{
         const getContent = async () => {
             const req = await fetch(api)
             const json = await req.json()
+            console.log(json)
             setContent(json)
             setLoading(false)
         }
         getContent()
     }, [])
 
-    return(
-        <ScrollView style={{backgroundColor: "#15202B"}}>
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.seta} onPress={handlePress}>
-                <MaterialIcons
-                name="keyboard-arrow-left"
-                size={40}
-                color="#C7CDCD"
-                style={{ marginRight: 10 }}
-                />
-                <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
-            </TouchableOpacity>
-            {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].email} title={content[item].nome} key={key} type={list.file}/>))}
-            {/* <MessageBox title={list.nome} content={list.nome} type={list.file}/> */}
-        </View>
-        </ScrollView>
-    )
+    if(list.tipo == 1){
+        return(
+            <ScrollView style={{backgroundColor: "#15202B"}}>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.seta} onPress={handlePress}>
+                    <MaterialIcons
+                    name="keyboard-arrow-left"
+                    size={40}
+                    color="#C7CDCD"
+                    style={{ marginRight: 10 }}
+                    />
+                    <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
+                </TouchableOpacity>
+                {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].email} title={content[item].nome} key={key} type={list.file}/>))}
+                {/* <MessageBox title={list.nome} content={list.nome} type={list.file}/> */}
+            </View>
+            </ScrollView>
+        )
+    }
+    else if(list.tipo == 2){
+        return(
+            <ScrollView style={{backgroundColor: "#15202B"}}>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.seta} onPress={handlePress}>
+                    <MaterialIcons
+                    name="keyboard-arrow-left"
+                    size={40}
+                    color="#C7CDCD"
+                    style={{ marginRight: 10 }}
+                    />
+                    <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
+                </TouchableOpacity>
+                {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].lattes} title={content[item].nome} key={key} type={list.file}/>))}
+                {/* <MessageBox title={list.nome} content={list.nome} type={list.file}/> */}
+            </View>
+            </ScrollView>
+        )
+    }
+    else if(list.tipo == 3){
+        return(
+            <ScrollView style={{backgroundColor: "#15202B"}}>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.seta} onPress={handlePress}>
+                    <MaterialIcons
+                    name="keyboard-arrow-left"
+                    size={40}
+                    color="#C7CDCD"
+                    style={{ marginRight: 10 }}
+                    />
+                    <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
+                </TouchableOpacity>
+                {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={`E-mail: ${content[item].email} \nTelefone: ${content[item].telefone}`} title={content[item].email} key={key} type={list.file}/>))}
+            </View>
+            </ScrollView>
+        )
+    }
+    else{
+        return(
+            <ScrollView style={{backgroundColor: "#15202B"}}>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.seta} onPress={handlePress}>
+                    <MaterialIcons
+                    name="keyboard-arrow-left"
+                    size={40}
+                    color="#C7CDCD"
+                    style={{ marginRight: 10 }}
+                    />
+                    <Text style={{color: "white", fontSize: 18}}>Voltar</Text>
+                </TouchableOpacity>
+                {!loading && Object.keys(content).map((item, key)=>(<MessageBox content={content[item].file} title={content[item].nome} key={key} type={list.file}/>))}
+                {/* <MessageBox title={list.nome} content={list.nome} type={list.file}/> */}
+            </View>
+            </ScrollView>
+        )
+    }
 }
 
 export default InfoScreen;
