@@ -1,8 +1,9 @@
 import react, {useState, useEffect} from "react";
 import {View,StyleSheet,Text,TouchableOpacity, ScrollView} from "react-native";
+import { set } from "react-native-reanimated";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MessageBox from "../../../../components/MessageBox";
-
+import MontarAxiosAPI from "../../../../utilitarios/axios"
 const InfoScreen = ({route, navigation}) =>{
 
     const handlePress = () =>{
@@ -10,17 +11,24 @@ const InfoScreen = ({route, navigation}) =>{
     }
  
     const list = route.params.itens
-    const api = list.api
+    const url = list.api
 
     const [content, setContent] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
+        const Axiosapi = MontarAxiosAPI();
         const getContent = async () => {
-            const req = await fetch(api)
-            const json = await req.json()
-            console.log(json)
-            setContent(json)
-            setLoading(false)
+            Axiosapi.get(url,).then(r=>{
+                setContent(r.data);
+                setLoading(false)
+            }).catch(error=>{
+                alert(error)
+            })
+            // const req = await fetch(api)
+            // const json = await req.json()
+            // console.log(json)
+            // setContent(json)
+            // setLoading(false)
         }
         getContent()
     }, [])

@@ -4,30 +4,34 @@ import styles from "./style";
 import data from "./dataInfo";
 import Box from "../../../components/Box";
 import Cabecalho from "../../../components/Cabecalho";
+import * as Constantes from '../../../utilitarios/Constantes'
 
 export default function Info({navigation}){
 
     const localData = [
         {
            "nome":"Restaurante Universitário",
-           "file": "https://drive.google.com/u/3/uc?id=1zx-9FW-WJB8EPmLsQEGrhRvj__TQnLW2&export=download",
+           "file": `${Constantes.URL_BASE}/informacoes_curso/restaurante_universitario`,
         },
         {
             "nome":"Biblioteca UFT",
-            "file": "https://drive.google.com/u/3/uc?id=161Uhl5YRFvw2sOMVH7SEOSljzXCCE907&export=download",
+            "file": `${Constantes.URL_BASE}/informacoes_curso/biblioteca_uft`,
          },
          {
             "nome":"Auxilios UFT",
-            "file": "https://drive.google.com/u/3/uc?id=1uVO3mxEQbziaHgIFzaPqjU814UYrJ6n7&export=download",
+            "file": `${Constantes.URL_BASE}/informacoes_curso/auxilio_uft`,
         },
         {
            "nome":"Calendario Acadêmico",
-           "file": "https://bender-api-uft.herokuapp.com/informacoes_curso/calendario_academico"
+           "file": `${Constantes.URL_BASE}/informacoes_curso/calendario_academico`,
         },
         {
            "nome":"Regimento Acadêmico",
-           "file": "https://drive.google.com/u/3/uc?id=1Cxqdu1C4OSF09t_H3BtUAztmORkHaVwk&export=download",
-        },
+           "file": `${Constantes.URL_BASE}/informacoes_curso/regimento_academico`,
+        },  {
+            "nome":"Matriz Curricular",
+            "file": `${Constantes.URL_BASE}/informacoes_curso/matriz_curricular`,
+         },
         ]
 
     const OpenURL = async (url) => {

@@ -39,7 +39,7 @@ export default function Login({navigation}) {
                     } else {
                         setErrorMessage(resposta.erro);
                     }
-                })
+                }).catch(err=>alert("Servidor da API não está respondendo"))
         } else {
             setErrorMessage("Insira o email e senha para entrar!");
         }

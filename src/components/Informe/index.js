@@ -59,8 +59,8 @@ const Informe = (props)=>{
               />
             </TouchableOpacity>
             <View style={mbox ? styles.messageBox : {display: "none"}}>
-                <Text>Aviso: {message}</Text>
-                <Text onPress={(event)=>OpenURL(link)} style={{marginTop:10, color:'#0000EE'}}>link: {link}</Text>
+                <Text> {message}</Text>
+                <Text onPress={(event)=>OpenURL(link)} style={{marginTop:10, color:'#0000EE'}}>Acesse pelo link: {link}</Text>
             </View>
         </View>
     )

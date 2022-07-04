@@ -29,6 +29,8 @@ export default function BottomNav() {
         AsyncStorage.setItem('@usuario', JSON.stringify(resposta));
         setCorUsuario(resposta.cor)
         setCarregando(false)
+    }).catch(err=>{
+        alert(err)
     })
 
 
