@@ -1,51 +1,42 @@
 import {
     View,
     ScrollView,
-    Dimensions,
     StyleSheet,
     Text
 } 
 from "react-native";
 import React, {useState, useEffect} from "react";
-import data from './dataCarousel';
 import Cabecalho from "../../../components/Cabecalho";
 import Informe from "../../../components/Informe";
-
-// const OpenURL = async (url) => {
-//       const supported = await Linking.canOpenURL(url);
-//       if (supported) {
-//         await Linking.openURL(url);
-//       } else {
-//         Alert.alert('Dont know how to open this URL: ${url}');
-//       }
-//   };
+import MontarAxiosAPI from "../../../utilitarios/axios";
 
 const HomePage= ({navigation})=>{
 
-    const [loading, setLoading] = useState(true);
-    const [list, setList] = useState([]);
-
-    const [people, setPeople] = useState([
-      {remetente:'Aviso da Coordenação', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'1'},
-      {remetente:'Aviso da Diretoria de Palmas', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'2'},
-      {remetente:'Assembléia Geral do CACCOMP', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'3'},
-      {remetente:'teste4', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'4'},
-      {remetente:'teste5', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'5'},
-      {remetente:'teste6', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'6'},
-      {remetente:'teste7', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'7'},
-      {remetente:'teste8', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'8'},
-      {remetente:'teste9', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'9'},
-      {remetente:'teste10', content:'ENCERRA AMANHÃ - Período para validação de ATIVIDADES COMPLEMENTARES para 2022/1º, nos termos da Resolução Consepe nº 04/2005 e suas alterações – Via Processo Eletrônico em', key:'10'},
-    ])
+  const [content, setContent] = useState([])
+  const [loading, setLoading] = useState(true)
+  const Axiosapi = MontarAxiosAPI();
+  useEffect(()=>{
+    if(loading){
+      Axiosapi.get("/informes/listar_informes").then(r=>{
+        setContent(r.data);
+        setLoading(false)
+    }).catch(error=>{
+        alert(error)
+    })
+    }
+    setTimeout(()=>{
+      setLoading(true);
+    }, 10000)
+  },[loading])
     
     return(
             <View style={styles.container}>
                 <Cabecalho title="Início" navigation={navigation}/>
                 
                 <ScrollView style={{marginBottom:70, height:'auto'}}>
-                  {people.map((item)=>{
+                  {content.map((item,key)=>{
                     return(
-                      <View key={item.key}>
+                      <View key={key}>
                         <Informe remetente={item.remetente} content={item.content}/>
                       </View>
                     )
